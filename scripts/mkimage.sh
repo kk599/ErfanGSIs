@@ -93,14 +93,14 @@ sudo mkdir -p "$systemdir/cache"
 
 if [ "$5" == "--old" ]; then
     if [ "$outputtype" == "Aonly" ]; then
-        sudo $make_ext4fs -T 0 -S $fcontexts -l $syssize -L system -a system -s "$output" "$systemdir/system"
+        sudo $make_ext4fs -T 0 -S $fcontexts -l $syssize -L system -a system  "$output" "$systemdir/system"
     else
-        sudo $make_ext4fs -T 0 -S $fcontexts -l $syssize -L / -a / -s "$output" "$systemdir/"
+        sudo $make_ext4fs -T 0 -S $fcontexts -l $syssize -L / -a / "$output" "$systemdir/"
     fi
 else
     if [ "$outputtype" == "Aonly" ]; then
-        sudo $toolsdir/mkuserimg_mke2fs.sh -s "$systemdir/system" "$output" ext4 system $syssize -T 0 -L system $fcontexts
+        sudo $toolsdir/mkuserimg_mke2fs.sh "$systemdir/system" "$output" ext4 system $syssize -T 0 -L system $fcontexts
     else
-        sudo $toolsdir/mkuserimg_mke2fs.sh -s "$systemdir/" "$output" ext4 / $syssize -T 0 -L / $fcontexts
+        sudo $toolsdir/mkuserimg_mke2fs.sh "$systemdir/" "$output" ext4 / $syssize -T 0 -L / $fcontexts
     fi
 fi
